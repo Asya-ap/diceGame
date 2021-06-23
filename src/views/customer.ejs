@@ -1,0 +1,61 @@
+<%- include ('partials/_header'); %>
+
+
+
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-md-7">
+            <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <td>n°</td>
+                <td>Name</td>
+                <td>Number of Plays</td>
+                <td>Number of Wins</td>
+                <td>Number of Lost</td>
+                <td>Action</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (data) { %>
+                <% for(var i = 0; i < data.length; i++) { %>
+                  <tr>
+                    <td><%= (i + 1) %></td>
+                    <td><%= data[i].name %></td>
+                    <td><%= data[i].numPlays %></td>
+                    <td><%= data[i].numWins %></td>
+                    <td><%= data[i].numLost %></td>
+                    <td>
+                      <a href="/update/<%= data[i].id %>" class="btn btn-info">Edit</a>
+                      <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Delete</a>
+                    </td>
+                  </tr>
+                <% } %>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+      
+              <form action="/add" method="POST">
+                <div class="form-group">
+                  <input type="text" name="name" placeholder="Name" class="form-control" autofocus>
+                </div>
+                <div class="form-group">
+                  <input type="text" name="numPlays" placeholder="numPlays" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="text" name="numWins" placeholder="numWins" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="numLost" placeholder="numLost" class="form-control">
+                  </div>
+      
+                <button type="submit" class="btn btn-primary"> save game </button>
+              </form>
+            </div>
+          </div>
+</div>
+
+<%- include ('partials/_footer'); %>
